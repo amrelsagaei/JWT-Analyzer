@@ -1,0 +1,12 @@
+{
+  "name": "backend",
+  "version": "0.0.0",
+  "type": "module",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@caido/sdk-backend": "^0.46.0"
+  }
+}

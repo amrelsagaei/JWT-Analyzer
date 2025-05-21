@@ -32,32 +32,6 @@ export function init(sdk: SDK<API, BackendEvents>) {
       sdk.console.error(`Error in response interceptor: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   });
-
-  // Try to register context menu handler if available
-  try {
-    // @ts-ignore - Context menu API may not be defined in the type but could be available at runtime
-    if (sdk.contextMenu && typeof sdk.contextMenu.register === 'function') {
-      // @ts-ignore
-  sdk.contextMenu.register({
-        id: "jwtAnalyzer",
-        section: "plugins",
-        label: "Analyze JWT Tokens",
-        contexts: ["request"],
-        callback: (callbackSdk: any, context: any) => {
-          try {
-            handleContextMenu(callbackSdk, context);
-          } catch (error) {
-            sdk.console.error(`Error in context menu handler: ${error instanceof Error ? error.message : 'Unknown error'}`);
-            }
-          }
-      });
-      sdk.console.log("Context menu registered successfully");
-      } else {
-      sdk.console.warn("Context menu API not available in this version of Caido");
-    }
-  } catch (error) {
-    sdk.console.warn(`Could not register context menu: ${error instanceof Error ? error.message : 'Unknown error'}`);
-  }
   
   // Register API methods
   sdk.api.register("analyzeJWT", analyzeJWT);

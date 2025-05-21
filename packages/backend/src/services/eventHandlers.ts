@@ -107,14 +107,8 @@ export function handleRequestInterceptor(sdk: CaidoBackendSDK, request: any): vo
     // Process JWT tokens if found
     try {
       if (hasJwt && allTokens.length > 0) {
-        // Show notification that we're analyzing the request
-        try {
-          if (sdk.notifications) {
-            sdk.notifications.info(`Analyzing request for JWT tokens`);
-          }
-        } catch (e) {
-          sdk.console.error("Error showing notification:", e);
-        }
+        // Log that we're analyzing the request
+        sdk.console.log(`Analyzing request for JWT tokens`);
         
         sdk.console.log(`Found ${allTokens.length} JWT token(s) in request, analyzing...`);
         
@@ -134,14 +128,8 @@ export function handleRequestInterceptor(sdk: CaidoBackendSDK, request: any): vo
           }
         }
         
-        // Show success notification with redirection info
-        try {
-          if (sdk.notifications) {
-            sdk.notifications.success(`Found JWT token(s) in request, go to dashboard to view details`);
-          }
-        } catch (e) {
-          sdk.console.error("Error showing success notification:", e);
-        }
+        // Log success info
+        sdk.console.log(`Found JWT token(s) in request, ready to view in dashboard`);
       } else {
         // If no JWT tokens found, just log it, don't send anything to dashboard
         sdk.console.log(`No JWT tokens found in the request`);
@@ -246,14 +234,8 @@ export function handleResponseInterceptor(sdk: CaidoBackendSDK, request: any, re
     // Process JWT tokens if found
     try {
       if (hasJwt && allTokens.length > 0) {
-        // Show notification that we're analyzing the response
-        try {
-          if (sdk.notifications) {
-            sdk.notifications.info(`Analyzing response for JWT tokens`);
-          }
-        } catch (e) {
-          sdk.console.error("Error showing notification:", e);
-        }
+        // Log that we're analyzing the response
+        sdk.console.log(`Analyzing response for JWT tokens`);
         
         sdk.console.log(`Found ${allTokens.length} JWT token(s) in response, analyzing...`);
         
@@ -273,14 +255,8 @@ export function handleResponseInterceptor(sdk: CaidoBackendSDK, request: any, re
           }
         }
         
-        // Show success notification with redirection info
-        try {
-          if (sdk.notifications) {
-            sdk.notifications.success(`Found JWT token(s) in response, go to dashboard to view details`);
-          }
-        } catch (e) {
-          sdk.console.error("Error showing success notification:", e);
-        }
+        // Log success info
+        sdk.console.log(`Found JWT token(s) in response, ready to view in dashboard`);
       } else {
         // If no JWT tokens found, just log it, don't send anything to dashboard
         sdk.console.log(`No JWT tokens found in the response`);
@@ -355,14 +331,8 @@ export async function handleContextMenu(sdk: CaidoBackendSDK, context: any): Pro
     if (allTokens.length > 0) {
       sdk.console.log(`Found ${allTokens.length} JWT token(s) in context menu selection`);
       
-      // Show notification
-      try {
-        if (sdk.notifications) {
-          sdk.notifications.info(`Analyzing ${allTokens.length} JWT token(s)`);
-        }
-      } catch (e) {
-        sdk.console.error("Error showing notification:", e);
-      }
+      // Log analysis action
+      sdk.console.log(`Analyzing ${allTokens.length} JWT token(s)`);
       
       // Process each token
       for (const token of allTokens) {
@@ -377,25 +347,13 @@ export async function handleContextMenu(sdk: CaidoBackendSDK, context: any): Pro
         }
       }
       
-      // Show success notification
-      try {
-        if (sdk.notifications) {
-          sdk.notifications.success(`JWT token(s) analyzed. Check the JWT Analyzer dashboard for details.`);
-        }
-      } catch (e) {
-        sdk.console.error("Error showing success notification:", e);
-      }
+      // Log success
+      sdk.console.log(`JWT token(s) analyzed. Available in the JWT Analyzer dashboard.`);
     } else {
       sdk.console.log("No JWT tokens found in context menu selection");
       
-      // Show notification
-      try {
-        if (sdk.notifications) {
-          sdk.notifications.warning("No JWT tokens found in the selected request");
-        }
-      } catch (e) {
-        sdk.console.error("Error showing notification:", e);
-      }
+      // Log warning
+      sdk.console.log("No JWT tokens found in the selected request");
     }
   } catch (error) {
     if (error instanceof Error) {

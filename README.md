@@ -1,8 +1,7 @@
-<div align="center">
+<div align="left">
   <img src="banner.jpg" alt="JWT Analyzer Banner" width="100%">
-  <h1>JWT Analyzer</h1>
-  <p><em>Version 1.0.0</em></p>
-  <p>
+
+  <p>  <br>
     <strong>A powerful plugin for Caido that automatically detects, analyzes, and helps security professionals test JSON Web Tokens (JWTs)</strong>
   </p>
   <br>
@@ -140,7 +139,7 @@ JWT Analyzer is actively maintained. Updates may include new features, additiona
 
 ## Feedback & Issues
 
-If you encounter any issues or have suggestions for improvements, please report them on our [GitHub repository](https://github.com/amrelsagaei/Caido-JWT-Analyzer/issues).
+If you encounter any issues or have suggestions for improvements, please report them on our [GitHub repository](https://github.com/amrelsagaei/JWT-Analyzer/issues).
 
 ## License
 
